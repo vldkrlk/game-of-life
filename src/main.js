@@ -19,6 +19,7 @@ const createCanvas = () => {
 const setListeners = (canvas, game) => {
   canvas.addEventListener("wheel", (e) => game.onWheel(e));
   canvas.addEventListener("mousemove", (e) => game.onMouseMove(e));
+  canvas.addEventListener("click", (e) => game.onClick(e));
 };
 
 (() => {

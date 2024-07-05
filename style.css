@@ -6,3 +6,12 @@ html {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+.menu {
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #242424;
+  border: 2px solid sienna;
+}
