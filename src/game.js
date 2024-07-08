@@ -1,15 +1,11 @@
 import { createMatrix } from "./utils";
 import { onPauseClick, onClearClick, onUpsChange } from "./menu";
+import { gameSettingsState } from "./gameSettings";
 
 export function Game(canvas) {
   this.canvas = canvas;
   this.ctx = canvas.getContext("2d");
-  this.settings = {
-    gridWidth: 30,
-    gridHeight: 30,
-    pause: false,
-    ups: 60,
-  };
+  this.settings = gameSettingsState;
   this.zoomIndex = 60;
   this.matrix = null;
   this.zoomValue = 40;
@@ -100,7 +96,7 @@ Game.prototype.update = function (self) {
 };
 Game.prototype.draw = function (self) {
   self.ctx.clearRect(0, 0, window.innerWidth, window.innerWidth);
-  self.ctx.fillStyle = "gray";
+  self.ctx.fillStyle = "#444444";
 
   for (let i = 0; i <= self.settings.gridHeight; i++) {
     self.ctx.fillRect(
@@ -119,26 +115,15 @@ Game.prototype.draw = function (self) {
       self.zoomIndex * self.settings.gridHeight
     );
   }
-
-  for (let row = 0; row < self.settings.gridHeight; row++) {
-    for (let col = 0; col < self.settings.gridWidth; col++) {
-      self.ctx.font = `${self.zoomIndex / 2}px serif`;
-      self.ctx.fillText(
-        row + col,
-        col * self.zoomIndex + self.xOffset,
-        (row + 1) * self.zoomIndex + self.yOffset
-      );
-    }
-  }
-
+  self.ctx.fillStyle = "brown";
   for (let row = 0; row < self.settings.gridHeight; row++) {
     for (let col = 0; col < self.settings.gridWidth; col++) {
       if (self.matrix[row][col]) {
         self.ctx.fillRect(
-          self.zoomIndex * col + self.xOffset,
-          self.zoomIndex * row + self.yOffset,
-          self.zoomIndex,
-          self.zoomIndex
+          self.zoomIndex * col + self.xOffset + 1,
+          self.zoomIndex * row + self.yOffset + 1,
+          self.zoomIndex - 1,
+          self.zoomIndex - 1
         );
       }
     }
