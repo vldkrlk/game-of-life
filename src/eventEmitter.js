@@ -13,5 +13,5 @@ export function unsubscribe(name, callback) {
 }
 
 export function emit(name, ...args) {
-  subscriptions[name].forEach((callback) => callback(null, ...args));
+  (subscriptions[name] || []).forEach((callback) => callback(null, ...args));
 }

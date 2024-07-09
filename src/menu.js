@@ -1,5 +1,5 @@
-import { addSubscription, initialSettigns } from "./gameSettings";
-
+import { initialSettigns } from "./gameSettings";
+import { subscribe } from "./eventEmitter";
 const pauseBtn = document.getElementById("run-btn");
 const clearBtn = document.getElementById("clear-btn");
 const upsRange = document.getElementById("ups-range");
@@ -8,9 +8,7 @@ const statusTextElement = document.getElementById("status-text");
 const STATUS_RUNNING = "running";
 const STATUS_PAUSED = "paused";
 
-const subscriptionKey = Symbol("menu-subscription");
-
-addSubscription(subscriptionKey, onUpdate);
+subscribe("menu", onUpdate);
 init();
 
 function onUpdate(prop, value) {

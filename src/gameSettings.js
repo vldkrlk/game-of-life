@@ -1,3 +1,5 @@
+import { emit } from "./eventEmitter";
+
 const handler = {
   get(target, prop) {
     return target[prop];
@@ -9,12 +11,8 @@ const handler = {
   },
 };
 
-const subscriptions = new Map();
-
 function onUpdate(prop, value) {
-  for (const sub of subscriptions) {
-    sub[1](prop, value);
-  }
+  emit("menu", prop, value);
 }
 
 export const initialSettigns = {
@@ -23,13 +21,5 @@ export const initialSettigns = {
   pause: true,
   ups: 8,
 };
-
-export function addSubscription(name, callback) {
-  subscriptions.set(name, callback);
-}
-
-export function removeSubscription(name) {
-  subscriptions.delete(name);
-}
 
 export const gameSettingsState = new Proxy(initialSettigns, handler);
