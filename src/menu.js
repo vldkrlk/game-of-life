@@ -22,6 +22,7 @@ function onUpdate(prop, value) {
 
 function init() {
   upsLabel.innerText = "Updates per second:" + initialSettigns.ups;
+  upsRange.value = initialSettigns.ups;
   setPause(initialSettigns.pause);
 }
 

@@ -21,7 +21,7 @@ export const initialSettigns = {
   gridWidth: 200,
   gridHeight: 200,
   pause: true,
-  ups: 60,
+  ups: 8,
 };
 
 export function addSubscription(name, callback) {
