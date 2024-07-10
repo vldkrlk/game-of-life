@@ -117,7 +117,7 @@ Game.prototype.draw = function (self) {
       self.zoomIndex * self.settings.gridHeight
     );
   }
-  self.ctx.fillStyle = "brown";
+  self.ctx.fillStyle = "#6b2ac7";
   for (let row = 0; row < self.settings.gridHeight; row++) {
     for (let col = 0; col < self.settings.gridWidth; col++) {
       if (self.matrix[row][col]) {
