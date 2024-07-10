@@ -1,6 +1,7 @@
 import { createMatrix } from "./utils";
 import { onPauseClick, onClearClick, onUpsChange } from "./menu";
 import { gameSettingsState } from "./gameSettings";
+import * as gameEvents from "./gameEvents";
 
 export function Game(canvas) {
   this.canvas = canvas;
@@ -130,29 +131,6 @@ Game.prototype.draw = function (self) {
   }
 };
 
-Game.prototype.onWheel = function (event) {
-  this.zoomIndex -= event.deltaY / 100;
-};
-
-Game.prototype.onMouseMove = function (event) {
-  let cursorType = "default";
-  if (event.altKey && event.buttons) {
-    cursorType = "move";
-    this.xOffset += event.movementX;
-    this.yOffset += event.movementY;
-  }
-  document.body.style.cursor = cursorType;
-};
-
-Game.prototype.onClick = function (event) {
-  if (event.altKey) {
-    return;
-  }
-  const x = Math.floor((event.x - this.xOffset) / this.zoomIndex);
-  const y = Math.floor((event.y - this.yOffset) / this.zoomIndex);
-  if (this.matrix[y][x]) {
-    this.matrix[y][x] = 0;
-    return;
-  }
-  this.matrix[y][x] = 1;
-};
+Game.prototype.onWheel = gameEvents.onWheel;
+Game.prototype.onMouseMove = gameEvents.onMouseMove;
+Game.prototype.onClick = gameEvents.onClick;
