@@ -13,6 +13,7 @@ export function Game(canvas) {
   this.xOffset = 300;
   this.yOffset = 100;
   this.lastUpdate = null;
+  this.isMouseDown = false;
 }
 
 Game.prototype.Run = function () {
@@ -134,3 +135,5 @@ Game.prototype.draw = function (self) {
 Game.prototype.onWheel = gameEvents.onWheel;
 Game.prototype.onMouseMove = gameEvents.onMouseMove;
 Game.prototype.onClick = gameEvents.onClick;
+Game.prototype.onMouseDown = gameEvents.onMouseDown;
+Game.prototype.onMouseUp = gameEvents.onMouseUp;
